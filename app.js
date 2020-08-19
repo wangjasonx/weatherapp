@@ -34,6 +34,8 @@ function displayResults(weather) {
 
     let temp = document.querySelector('.current .temp');
     temp.innerHTML = `${Math.round(weather.main.temp)}<span>°F</span>`;
+    setBackground(Math.round(weather.main.temp));
+
 
     let weather_el = document.querySelector('.current .weather');
     weather_el.innerText = weather.weather[0].main;
@@ -42,12 +44,19 @@ function displayResults(weather) {
     hi_low.innerText = `${Math.round(weather.main.temp_min)}°F / ${Math.round(weather.main.temp_max)}°F`;
 }
 
+function setBackground(temp) {
+    if(temp >= 65) {
+        document.body.style.backgroundImage = "url('background.jpg')";
+    } else {
+        document.body.style.backgroundImage = "url('background-2.png')";
+    }
+}
+
 function dateBuilder(d) {
     let months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
     let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-
-    let day = days[d.getDay()];
+    let day = days[d.getDay()- 1];
     let date = d.getDate();
     let month = months[d.getMonth()];
     let year = d.getFullYear();

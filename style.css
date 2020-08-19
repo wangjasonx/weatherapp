@@ -9,6 +9,7 @@ body {
     background-image: url(background.jpg);
     background-size: cover;
     background-position: top center;
+    transition: background-image 0.5s ease-in;
 }
 
 .app-wrap {
@@ -72,6 +73,10 @@ main {
     font-weight: 900;
     margin: 30px 0px;
     text-shadow: 2px 10px rgba(0, 0, 0, 0.6);
+    background-color: rgba(202, 202, 202, 0.5);
+    border-radius: 25px;
+    border: 2px solid white;
+    padding: 0px 5px 10px 5px;
 }
 
 .current .temp span {
