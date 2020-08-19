@@ -6,10 +6,20 @@ const api = {
 const searchBox = document.querySelector('.search-box');
 
 searchBox.addEventListener('keypress', setQuery);
+let state = null;
 
 function setQuery(event) {
     if(event.keyCode == 13) {
+        let inputValues = searchBox.value.split(",");
+        for(let i = 0; i < inputValues.length; i++) {
+            inputValues[i] = inputValues[i].trim();
+        }
+
+        if(inputValues.length == 2) {
+            state = inputValues[1];
+        }
         getResults(searchBox.value);
+        console.log(inputValues);
         console.log(searchBox.value);
     }
 }
@@ -23,10 +33,14 @@ function getResults(city, state) {
 
 
 function displayResults(weather) {
+    let city = document.querySelector('.location .city');
 
     console.log(weather);
-    let city = document.querySelector('.location .city');
-    city.innerText = `${weather.name}, ${weather.sys.country}`;
+
+    if(state === null) {
+        state = weather.sys.country;
+    }
+    city.innerText = `${weather.name}, ${state}`;
 
     let now = new Date();
     let date = document.querySelector('.location .date');
@@ -45,6 +59,7 @@ function displayResults(weather) {
 }
 
 function setBackground(temp) {
+
     if(temp >= 65) {
         document.body.style.backgroundImage = "url('background.jpg')";
     } else {
