@@ -17,6 +17,8 @@ function setQuery(event) {
 
         if(inputValues.length == 2) {
             state = inputValues[1];
+        } else {
+            state = null;
         }
         getResults(searchBox.value);
         console.log(inputValues);
